@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form onsubmit="check(); return false">
+        <p>Enter size</p>
+        <input type="number" required min="2" id="size1"> X <input type="number" required min="2" id="size2">
+        <button type="submit">Start</button> 
+    </form>
+    <p id="para"></p>
+    <form onsubmit="sum(); return false">
+    <div id="matrix1"></div>
+    <div id="matrix2"></div>
+    <button type="submit">sum</button>
+    <div id="result"></div>
+    </form>
+    <script>
+        function check() {
+            let size2 = Number(document.querySelector("#size2").value) ;
+            let size1 = Number(document.querySelector("#size1").value) ;
+            let text = "";
+            if ( size1 != size2 ) {
+                text = "Enter same number";
+            }
+            document.querySelector("#para").innerText = text ;
+
+            let firstval = document.querySelector("#matrix1");
+            let secondval = document.querySelector("#matrix2");
+            let resultval = document.querySelector("#result");
+
+
+            let firstval.innerHTML = "";
+            let secondval.innerHTML = "";
+            let resultval.innerHTML = "";
+
+            for( i = 0 ; i < size1 ; i++ ){
+                for( j = 0 ; j < size2 ; j++ ){
+                    firstval.innerHTML += ` <input type="number" required size="1" id="matrixval1${i}${j}" value="0"> `;
+                    secondval.innerHTML += ` <input type="number" required size="1" id="matrixval2${i}${j}" value="0"> `;
+                    resultval.innerHTML += ` <input type="number" disabled required size="1" id="matrixval3${i}${j}" value="0"> `;
+                }
+                firstval.innerHTML += "<br>";
+                secondval.innerHTML += "<br>";
+                resultval.innerHTML += "<br>";
+            }
+
+        }
+        function sum(){
+            for( i = 0 ; i < size1 ; i++ ){
+                for( j = 0 ; j < size2 ; j++ ){
+                    document.querySelector(`#matrixval3${i}${j}`).value = document.querySelector(`#matrixavl1${i}${j}`).value + document.querySelector(`#matrixval2${i}${j}`).value ;
+                }
+                
+            }
+        }
+        
+           
+    </script>
+</body>
+</html>
